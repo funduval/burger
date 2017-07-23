@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Eat Da Burger</title>
+</head>
+<body>
+<h1>Eat Da Burger!</h1>
+<h2>All Da Burgers You Created!</h2>
+
+<ul>
+
+{{#each burgers}}
+
+{{#unless this.eaten}}
+
+<li>
+{{this.name}}
+
+<form action="burgers/update/{{this.id}}?_method=UPDATE" method="POST">
+<input type="hidden" name="eaten" value="true">
+<button type="submit">Eat it up!</button>
+</form>
+
+{{>burgers/delete-burger}}
+
+</li>
+
+{{/unless}}
+
+{{/each}}
+
+</ul>
+
+<h2>All Da Burgers You Ate!</h2>
+
+<ul>
+
+{{#each burgers}}
+
+{{#if this.eaten}}
+
+<li>
+{{this.name}}
+
+<form action="burgers/update/{{this.id}}?_method=UPDATE" method="POST">
+<input type="hidden" name="eaten" value="false">
+<button type="submit">Make it Again!</button>
+</form>
+
+</li>
+{{/if}}
+{{/each}}
+</ul>
+
+<h2>Create da Latest Burger!</h2>
+
+
+<form class="create-form" action="burgers/create" method="POST">
+<input type="text" name="added" value="name da burger">
+<button type="submit">Add da Burger!</button>
+</form>
+
+	
+</body>
+</html>
