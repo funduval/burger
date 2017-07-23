@@ -15,6 +15,7 @@
 {{#unless this.eaten}}
 
 <li>
+
 {{this.name}}
 
 <form action="burgers/update/{{this.id}}?_method=UPDATE" method="POST">
@@ -22,7 +23,13 @@
 <button type="submit">Eat it up!</button>
 </form>
 
-{{>burgers/delete-burger}}
+</li>
+
+<li>
+
+<form action = 'burgers/delete/{{this.id}}?_method=DELETE' method="POST">
+<button type="submit">EAT DA BURGER!</button>
+</form>
 
 </li>
 

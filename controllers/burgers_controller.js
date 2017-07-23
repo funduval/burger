@@ -1,10 +1,19 @@
+
+const express = require('express');
+const burger = require('../models/burger');
+const router = express.Router();
+
+
+
+
 router.get('/', function(req,res){
 
-	res.redirect('/cats');
+	res.redirect('/burgers');
 
 });
 
 router.get('/burgers', function(req,res){
+	console.log("Hitting burger get route")
 	burger.all(function(data){
 
 		var hbsObject = { burgers: data};
@@ -14,27 +23,33 @@ router.get('/burgers', function(req,res){
 });
 
 router.post('/burgers/create', function(req,res){
-	burger.create(['name', 'eathood'], 
-		[req.body.name, req.body.eathood],
+	burger.create(['name', 'eaten'], 
+		[req.body.name, req.body.eaten],
 		function(){
-			res.redirect('/burgers');
+			res.redirect('/burgers')
 	});	
 });
 
 router.put('/burgers/update/:id', function(req,res){
 	
-	var eathood = 'id = '+ req.params.id;
-	console.log('eathood', eathood);
+	var condition = "id = " + req.params.id;
+	console.log('condition', condition);
 
-	burger.update({ eaten: req.body.eaten }, eathood, function(){
+	burger.update({ eaten: req.body.eaten }, condition, function(){
 
-			var eathood = 'id = '+ req.params.id;
+			var condition = 'id = '+ req.params.id;
 			res.redirect('/burgers');
 
 	});	
 });
 
 router.delete('/cats/delete/:id', function(req,res){
+	var condition = "id = " + req.params.id;
+	burger.delete(condition, function(){
 
+		res.redirect('/');
+	});
 
-}
+});
+
+module.exports = router;

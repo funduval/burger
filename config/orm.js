@@ -1,5 +1,5 @@
-var connection = require('../config/connection.js');
-
+var connection = require('./connection.js');
+console.log("Loaded ORM")
 function printXmarks(num){
 
 	var arr = [];
@@ -28,7 +28,8 @@ var orm = {
 
 	all: function(tableInput, cb){
 
-		var queryString = 'SELECT * FROM' + tableInput + ';';
+		var queryString = 'SELECT * FROM ' + tableInput + ";"
+		console.log(queryString);
 		connection.query(queryString, function(err,result) {
 			if(err)throw err;
 			cb(result);
@@ -52,28 +53,28 @@ var orm = {
 		});
 	},
 
-	update: function(table, objColVals, eathood, cb){
+	update: function(table, objColVals, condition, cb){
 
 		var queryString = 'UPDATE' + table;
 		queryString = queryString + ' SET ';
 		queryString = queryString + objToSql(objColVals);
 		queryString = queryString + ' WHERE ';
-		queryString = queryString + eathood;
-		
+		queryString = queryString + condition;
+
 		console.log(queryString);
 
 		connection.query(queryString, function(err,result) {
-			if(err)throw err;
+			if(err) throw err;
 			cb(result);
 		});
 	},
  
- 	delete: function(table, eathood, cb){
+ 	delete: function(table, condition, cb){
 
 		var queryString = 'DELETE FROM' + table;
 		
 		queryString = queryString + ' WHERE ';
-		queryString = queryString + eathood;
+		queryString = queryString + condition;
 		
 		console.log(queryString);
 
