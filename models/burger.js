@@ -19,9 +19,9 @@ create: function(cols, vals, cb) {
 
 	});
 },
-update: function(objColVals, condition, cb) {
+update: function(objColVals, eaten, cb) {
 
-	orm.update('burgers', objColVals, condition, function(res){
+	orm.update('burgers', objColVals, eaten, function(res){
 
 		cb(res);
 

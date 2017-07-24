@@ -28,7 +28,7 @@ var orm = {
 
 	all: function(tableInput, cb){
 
-		var queryString = 'SELECT * FROM ' + tableInput + ";"
+		var queryString = 'SELECT * FROM ' + tableInput + ";";
 		console.log(queryString);
 		connection.query(queryString, function(err,result) {
 			if(err)throw err;
@@ -39,8 +39,9 @@ var orm = {
 	create: function(table, cols, vals, cb){
 
 		var queryString = 'INSERT INTO' + table;
+		queryString = queryString + ' (';
 		queryString = queryString + cols.toString();
-		queryString = queryString + ' )';
+		queryString = queryString + ') ';
 		queryString = queryString + 'VALUES (';
 		queryString = queryString + printXmarks(vals.length);
 		queryString = queryString + ') ';
@@ -53,13 +54,13 @@ var orm = {
 		});
 	},
 
-	update: function(table, objColVals, condition, cb){
+	update: function(table, objColVals, eaten, cb){
 
 		var queryString = 'UPDATE' + table;
 		queryString = queryString + ' SET ';
 		queryString = queryString + objToSql(objColVals);
 		queryString = queryString + ' WHERE ';
-		queryString = queryString + condition;
+		queryString = queryString + eaten;
 
 		console.log(queryString);
 
@@ -69,12 +70,12 @@ var orm = {
 		});
 	},
  
- 	delete: function(table, condition, cb){
+ 	delete: function(table, eaten, cb){
 
-		var queryString = 'DELETE FROM' + table;
+		var queryString = 'DELETE FROM ' + table;
 		
 		queryString = queryString + ' WHERE ';
-		queryString = queryString + condition;
+		queryString = queryString + eaten;
 		
 		console.log(queryString);
 

@@ -1,0 +1,57 @@
+body{
+
+	background-color: #CFEBEA;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 20px;
+
+}
+
+button {
+	background-color: white;
+	color: black;
+}
+
+h1 {
+
+	line-height: 40px;
+	padding:4px;
+	background-color: #389096;
+	color:white;
+}
+h2{
+
+	color:white;
+	background-color: #B8BD5E;
+}
+
+#made {
+	display: inline;
+	float: left;
+	margin-left: 2%;
+
+}
+#name{
+	color: lightgrey;
+}
+
+
+#eaten {
+	display: inline;
+	float: right;
+	margin-right: 4%;
+}
+
+#create {
+	display: block;
+	clear: left;
+		margin:auto;
+
+
+}
+
+#burger {
+	width:300px;
+	display:inline;
+	float:left;
+}
