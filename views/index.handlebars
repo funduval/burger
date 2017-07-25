@@ -20,8 +20,11 @@
 <li>
 
 {{this.name}}
+<form action = 'burgers/update/{{this.id}}?_method=PUT' method="POST"><input type="hidden" name="eaten" value="true">
+<button type="submit">EATs DA BURGER!</button>
+</form>
 <form action = 'burgers/delete/{{this.id}}?_method=DELETE' method="POST">
-<button type="submit">EAT DA BURGER!</button>
+<button type="submit">DELETE DA BURGER!</button>
 </form>
 
 </li>
@@ -47,7 +50,7 @@
 <li>
 {{this.name}}
 
-<form action="burgers/update/{{this.id}}?_method=UPDATE" method="POST">
+<form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
 <input type="hidden" name="eaten" value="false">
 <button type="submit">Make it Again!</button>
 </form>
@@ -60,8 +63,8 @@
 
 <div id = "create">
 <h2>Create da Latest Burger!</h2>
-<form class="create-form" action="burgers/create" method="POST">
-<input type="text" name="added" value="name da burger" id="name">
+<form action="burgers/create" method="POST">
+<input type="text" placeholder="Name Da Burger">
 <button type="submit">Add da Burger!</button>
 </form>
 </div>

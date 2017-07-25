@@ -1,11 +1,14 @@
+
 var connection = require('./connection.js');
+
 console.log("Loaded ORM")
-function printXmarks(num){
+
+function printQuestionMarks(num){
 
 	var arr = [];
 
 	for (var i = 0; i < num; i++) {
-		arr.push('x');
+		arr.push('?');
 	}
 	return arr.toString();
 }
@@ -38,29 +41,29 @@ var orm = {
 
 	create: function(table, cols, vals, cb){
 
-		var queryString = 'INSERT INTO' + table;
+		var queryString = 'INSERT INTO ' + table;
 		queryString = queryString + ' (';
 		queryString = queryString + cols.toString();
 		queryString = queryString + ') ';
 		queryString = queryString + 'VALUES (';
-		queryString = queryString + printXmarks(vals.length);
+		queryString = queryString + printQuestionMarks(vals.length);
 		queryString = queryString + ') ';
 		
 		console.log(queryString);
 
-		connection.query(queryString, vals, function(err,result) {
+		connection.query(queryString, vals, function(err, result) {
 			if(err)throw err;
 			cb(result);
 		});
 	},
 
-	update: function(table, objColVals, eaten, cb){
+	update: function(table, objColVals, condition, cb){
 
-		var queryString = 'UPDATE' + table;
+		var queryString = 'UPDATE ' + table;
 		queryString = queryString + ' SET ';
 		queryString = queryString + objToSql(objColVals);
 		queryString = queryString + ' WHERE ';
-		queryString = queryString + eaten;
+		queryString = queryString + condition;
 
 		console.log(queryString);
 
@@ -70,12 +73,12 @@ var orm = {
 		});
 	},
  
- 	delete: function(table, eaten, cb){
+ 	delete: function(table, condition, cb){
 
 		var queryString = 'DELETE FROM ' + table;
 		
 		queryString = queryString + ' WHERE ';
-		queryString = queryString + eaten;
+		queryString = queryString + condition;
 		
 		console.log(queryString);
 

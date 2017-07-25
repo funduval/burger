@@ -11,7 +11,7 @@ all: function(cb) {
 	});
 },
 
-create: function(cols, vals, cb) {
+create: function (cols, vals, cb) {
 
 	orm.create('burgers', cols, vals, function(res){
 
@@ -19,9 +19,18 @@ create: function(cols, vals, cb) {
 
 	});
 },
-update: function(objColVals, eaten, cb) {
+update: function(objColVals, condition, cb) {
 
-	orm.update('burgers', objColVals, eaten, function(res){
+	orm.update('burgers', objColVals, condition, function(res){
+
+		cb(res);
+
+	});
+	
+  },
+  delete: function(condition, cb) {
+
+	orm.delete('burgers', condition, function(res){
 
 		cb(res);
 

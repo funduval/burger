@@ -3,7 +3,9 @@ const express = require('express');
 const burger = require('../models/burger.js');
 const router = express.Router();
 
-
+ // at Object.create (/Users/fundaistvan/burger/config/orm.js:51:14)
+ //    at Object.create (/Users/fundaistvan/burger/models/burger.js:16:6)
+ //    at /Users/fundaistvan/burger/controllers/burgers_controller.js:29:9
 
 
 router.get('/', function(req,res){
@@ -28,7 +30,7 @@ router.post('/burgers/create', function(req,res){
 
 	burger.create(['name', 'eaten'], 
 
-		[req.body.name, req.body.eaten],
+		[req.body.name, false],
 
 		function(){
 			
@@ -40,13 +42,12 @@ router.put('/burgers/update/:id', function(req,res){
 
 	console.log("Hitting burger put/update route")
 
-	var eaten = "id = " + req.params.id;
+	var condition = "id = " + req.params.id;
 
-	console.log('eaten', eaten);
+	console.log('condition', condition);
 
-	burger.update({ eaten: req.body.eaten }, eaten, function(){
+	burger.update({ eaten: req.body.eaten }, condition, function(){
 
-			var eaten = 'id = '+ req.params.id;
 			res.redirect('/burgers');
 
 	});	
@@ -55,9 +56,9 @@ router.put('/burgers/update/:id', function(req,res){
 router.delete('/burgers/delete/:id', function(req,res){
 	console.log("Hitting burger delete route")
 
-	var eaten = "id = " + req.params.id;
+	var condition = "id = " + req.params.id;
 
-	burger.delete(eaten, function(){
+	burger.delete(condition, function(){
 
 		res.redirect('/');
 	});
