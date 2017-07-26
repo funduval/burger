@@ -1,7 +1,8 @@
 
 const express = require('express');
-const burger = require('../models/burger.js');
 const router = express.Router();
+const burger = require('../models/burger.js');
+
 
  // at Object.create (/Users/fundaistvan/burger/config/orm.js:51:14)
  //    at Object.create (/Users/fundaistvan/burger/models/burger.js:16:6)
@@ -10,7 +11,7 @@ const router = express.Router();
 
 router.get('/', function(req,res){
 
-	res.redirect('/burgers');
+	res.redirect('/burgers')
 
 });
 
@@ -24,18 +25,20 @@ router.get('/burgers', function(req,res){
 	});	
 });
 
-router.post('/burgers/create', function(req,res){
+//router.post('/burger/create', function (req, res) {
+//   burger.insertOne(req.body.burger_name, function() {
+//     res.redirect('/index');
+//   });
+// });
 
-	console.log("Hitting burger post route")
-
-	burger.create(['name', 'eaten'], 
-
-		[req.body.name, false],
-
-		function(){
-			
-			res.redirect('/burgers')
-	});	
+router.post("/", function (req, res) {
+  burger.create([
+    "name", "eaten"
+  ], [
+    req.body.name, req.body.eaten
+  ], function () {
+    res.redirect("/burgers");
+  });
 });
 
 router.put('/burgers/update/:id', function(req,res){

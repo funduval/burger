@@ -4,6 +4,7 @@ body{
 	text-align: center;
 	font-family: sans-serif;
 	font-size: 20px;
+	position: relative;
 
 }
 
@@ -43,10 +44,26 @@ h2{
 }
 
 #create {
-	display: block;
-	clear: left;
-		margin:auto;
+	position: absolute;
+	bottom: -560px;
+	left: 30%;
 
+
+}
+#addOne{
+	display:inline;
+	float: right;
+	line-height: 20px;
+	font-size: 20px;
+}
+
+#burgerName{
+	
+	margin:auto;
+	line-height:30px;
+	font-size:20px;
+	width:300px;
+	
 
 }
 
@@ -54,4 +71,5 @@ h2{
 	width:300px;
 	display:inline;
 	float:left;
+	margin-left: 3%;
 }

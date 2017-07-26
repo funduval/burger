@@ -21,7 +21,7 @@
 
 {{this.name}}
 <form action = 'burgers/update/{{this.id}}?_method=PUT' method="POST"><input type="hidden" name="eaten" value="true">
-<button type="submit">EATs DA BURGER!</button>
+<button type="submit">EAT DA BURGER!</button>
 </form>
 <form action = 'burgers/delete/{{this.id}}?_method=DELETE' method="POST">
 <button type="submit">DELETE DA BURGER!</button>
@@ -52,7 +52,7 @@
 
 <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
 <input type="hidden" name="eaten" value="false">
-<button type="submit">Make it Again!</button>
+<button type="submit"id="makeIt">MAKE IT AGAIN!</button>
 </form>
 
 </li>
@@ -60,15 +60,21 @@
 {{/each}}
 </ul>
 </div>
+<div id="create">
+ <form class="create-update-form" action="/" method="POST">
 
-<div id = "create">
-<h2>Create da Latest Burger!</h2>
-<form action="burgers/create" method="POST">
-<input type="text" placeholder="Name Da Burger">
-<button type="submit">Add da Burger!</button>
-</form>
-</div>
+      <div class="form-group" id = "wholeGroup">
+        <label for="burger">Create a New Burger:</label>
+        <input type="text" id="burgerName" name="name">
+      </div>
 
-	
+      <div class="form-group" type="hidden">
+        <input type="hidden" name="devour" value="0">
+      </div>
+
+      <button type="submit" id="addOne">Add Burger</button>
+    </form>
+    </div>
+
 </body>
 </html>
